@@ -10,23 +10,35 @@ public class PlayerCharacterController : MonoBehaviour
     // Script reference for Player Inputs
     private PlayerInputManager pInput;
 
-    //Movements
+    // MOVEMENT
     [Header("Movement Settings")]
     [Space(10)]
     [SerializeField] float currentSpeed;
     [SerializeField] float idleSpeed = 0f;
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float runSpeed = 8f;
+    // JUMP
     [Space(10)]
-    //[SerializeField] float jumpForce = 7f;
-    //bool jumpActive;
+    [SerializeField] float jumpHeight = 2f;
 
     [Header("Movement Transitions")]
     [Space(10)]
     [SerializeField] float movementSmoothSpeed = 3f;
     [SerializeField] float rotationSmoothSpeed = 10f;
-    
 
+    [Space(30)]
+
+    // GROUNDING
+    [Header("Grounding Setup")]
+    [Space(10)]
+    [SerializeField] bool isGrounded;
+    // Layer for ground detection.
+    [SerializeField] LayerMask groundLayer;
+    // Empty location at player's feet.
+    [SerializeField] Transform groundCheck;
+    [SerializeField] float gravity = -15f;
+    [SerializeField] Vector3 velocity;
+    
 
 
     // --- START ---
@@ -38,13 +50,19 @@ public class PlayerCharacterController : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+
     // --- UPDATE ---
     void Update()
     {
-        Debug.Log($"currentSpeed: {currentSpeed}");
+        // Debug.Log($"currentSpeed: {currentSpeed}");
+
+        // Movement Function
         OnMove();
 
+        // Jump and Gravity Function
+        JumpAndGravity();
     }
+
 
     // --- MOVEMENT ---
     void OnMove()
@@ -73,8 +91,6 @@ public class PlayerCharacterController : MonoBehaviour
                 //currentSpeed = movementSmoothedSpeed;
             }
 
-            
-
 
             // Creates a Quaternion variable that makes the targetRotation the targetDirection Input.
             targetRotation = Quaternion.LookRotation(inputDir).eulerAngles.y;
@@ -88,4 +104,30 @@ public class PlayerCharacterController : MonoBehaviour
         // Moves the controller based of the targetDirection values * player speed over time.
         controller.Move(inputDir * currentSpeed * Time.deltaTime);
     }
+
+
+    // --- JUMP AND GRAVITY ---
+    void JumpAndGravity()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, .2f, groundLayer);
+        
+        if (isGrounded)
+        {
+            //velocity.y = 0f;
+            if (pInput.jump)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * 2 * -gravity);
+                pInput.jump = false;
+            }
+        }
+        else
+        {
+            // Gravity is applied when player is in the air.
+            velocity.y += gravity * Time.deltaTime;
+        }
+
+        // Applies the vertical movement.
+        controller.Move(velocity * Time.deltaTime);
+    }
+
 }
