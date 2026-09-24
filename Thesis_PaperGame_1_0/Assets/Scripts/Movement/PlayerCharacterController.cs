@@ -41,13 +41,18 @@ public class PlayerCharacterController : MonoBehaviour
 
     [Space(30)]
 
+    // INTERACTION
+    [Header("Interaction")]
+    [Space(10)]
+    public bool attemptInteraction = false;
+
     // CAMERA
     [Header("Camera Settings")]
     [Space(10)]
     [SerializeField] GameObject mainCam;
     [SerializeField] Transform cameraFollowTarget;
-    private float xRotation;
-    private float yRotation;
+    //private float xRotation;
+    //private float yRotation;
 
     // --- START ---
     void Start()
@@ -64,11 +69,15 @@ public class PlayerCharacterController : MonoBehaviour
     {
         // Debug.Log($"currentSpeed: {currentSpeed}");
 
+        // Interact Function
+        EngageInteraction();
+        
         // Movement Function
         OnMove();
 
         // Jump and Gravity Function
         JumpAndGravity();
+
     }
 
 
@@ -153,4 +162,15 @@ public class PlayerCharacterController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+
+    // --- ENGAGE INTERACTION ---
+    void EngageInteraction()
+    {
+        if (pInput.interact)
+        {
+            attemptInteraction = !attemptInteraction;
+            pInput.interact = false;
+        }
+        
+    }
 }

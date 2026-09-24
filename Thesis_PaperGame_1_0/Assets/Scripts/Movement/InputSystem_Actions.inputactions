@@ -37,6 +37,16 @@
                     "priority": 0
                 },
                 {
+                    "name": "Interact",
+                    "type": "PassThrough",
+                    "id": "852140f2-7766-474d-8707-702459ba45f3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.1,pressPoint=0.1)",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "6b444451-8a00-4d00-a97e-f47457f736a8",
@@ -44,16 +54,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true,
-                    "priority": 0
-                },
-                {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "852140f2-7766-474d-8707-702459ba45f3",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false,
                     "priority": 0
                 },
                 {

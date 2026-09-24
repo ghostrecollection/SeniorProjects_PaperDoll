@@ -12,6 +12,8 @@ public class PlayerInputManager : MonoBehaviour
     public bool run;
     // Bool to check for space key.
     public bool jump;
+    // Bool to check for interact key.
+    public bool interact;
 
     // OnMove Function through Input System.
     void OnMove(InputValue value)
@@ -31,5 +33,11 @@ public class PlayerInputManager : MonoBehaviour
     {
         // Defines jump as when space is pressed.
         jump = value.isPressed;
+    }
+
+    // OnInteract Function through Input System.
+    void OnInteract(InputValue value)
+    {
+        interact = value.isPressed;
     }
 }
