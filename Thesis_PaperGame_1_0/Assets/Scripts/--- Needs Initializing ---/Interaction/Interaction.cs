@@ -83,7 +83,7 @@ public class Interaction : MonoBehaviour
     {
         if (playerCharacterController.attemptInteraction && canInteract == true)
         {
-            Debug.Log("Pressed E");
+            // Debug.Log("Pressed E");
             sliderScreen.SetActive(true);
         }
         
