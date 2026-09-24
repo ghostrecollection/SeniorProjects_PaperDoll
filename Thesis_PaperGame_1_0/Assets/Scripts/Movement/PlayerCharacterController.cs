@@ -23,7 +23,7 @@ public class PlayerCharacterController : MonoBehaviour
 
     [Header("Movement Transitions")]
     [Space(10)]
-    [SerializeField] float movementSmoothSpeed = 3f;
+    //[SerializeField] float movementSmoothSpeed = 3f;
     [SerializeField] float rotationSmoothSpeed = 10f;
 
     [Space(30)]
@@ -37,7 +37,7 @@ public class PlayerCharacterController : MonoBehaviour
     // Empty location at player's feet.
     [SerializeField] Transform groundCheck;
     [SerializeField] float gravity = -15f;
-    [SerializeField] Vector3 velocity;
+    private Vector3 velocity;
     
 
 

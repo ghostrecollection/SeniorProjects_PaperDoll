@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerInputManager : MonoBehaviour
 {
     // INPUTS
+    [Header("Inputs")]
+    [Space(10)]
     // Vector2 for storing inputs.
     public Vector2 move;
     // Bool to check for shift key.

@@ -30,6 +30,8 @@ public class GameStateController : MonoBehaviour
         stateObjs = GetAllGameStateObjs();
     }
 
+
+    // --- CHANGE STATE ---
     public void ChangeState(string state)
     {
         switch (state)
@@ -58,6 +60,8 @@ public class GameStateController : MonoBehaviour
         }
     }
 
+
+    // --- LIST ---
     public List<IGameStateManager> GetAllGameStateObjs()
     {
         IEnumerable<IGameStateManager> stateManagers = FindObjectsByType<MonoBehaviour>().OfType<IGameStateManager>();
