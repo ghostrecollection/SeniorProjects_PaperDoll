@@ -38,8 +38,16 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] float gravity = -15f;
     private Vector3 velocity;
-    
 
+    [Space(30)]
+
+    // CAMERA
+    [Header("Camera Settings")]
+    [Space(10)]
+    [SerializeField] GameObject mainCam;
+    [SerializeField] Transform cameraFollowTarget;
+    private float xRotation;
+    private float yRotation;
 
     // --- START ---
     void Start()
@@ -61,6 +69,21 @@ public class PlayerCharacterController : MonoBehaviour
 
         // Jump and Gravity Function
         JumpAndGravity();
+    }
+
+
+    // --- LATE UPDATE --- 
+    private void LateUpdate()
+    {
+        CameraSettings();
+    }
+
+
+    // --- CAMERA SETTINGS --- 
+    void CameraSettings()
+    {
+
+        cameraFollowTarget.rotation = Quaternion.identity;
     }
 
 
