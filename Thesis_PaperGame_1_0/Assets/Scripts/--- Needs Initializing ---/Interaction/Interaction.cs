@@ -58,6 +58,8 @@ public class Interaction : MonoBehaviour
             {
                 interactionScreen.SetActive(true);
                 canInteract = true;
+                GameStateController.instance.ChangeState("MOUSE");
+                Debug.Log($"State: {GameStateController.instance.gstate.state.ToString()}");
             }
             else
             {
