@@ -41,6 +41,11 @@ public class GameStateController : MonoBehaviour
                     gstate.state = GameState.gameState.NORMAL;
                     break;
                 }
+            case "MOUSE":
+                {
+                    gstate.state = GameState.gameState.MOUSE;
+                    break;
+                }
             case "DIALOGUE":
                 {
                     gstate.state = GameState.gameState.DIALOGUE;
@@ -60,6 +65,17 @@ public class GameStateController : MonoBehaviour
         }
     }
 
+    //in another script/class
+    //call the ChangeState method like this:
+    //GameStateController.instance.ChangeState(string)
+
+    /*public void Update()
+    {
+        if(gstate.state == GameState.gameState.NORMAL)
+        {
+            //set the mouse and player character behavior
+        }
+    }*/
 
     // --- LIST ---
     public List<IGameStateManager> GetAllGameStateObjs()

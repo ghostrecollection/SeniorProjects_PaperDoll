@@ -5,6 +5,7 @@ public class GameState
     public enum gameState
     {
         NORMAL,
+        MOUSE,
         DIALOGUE,
         MENU
     }
