@@ -3295,6 +3295,7 @@ MonoBehaviour:
   priorityNum: 15
   allCameras:
   - {fileID: 15221120}
+  - {fileID: 1382601538}
   currentCam: {fileID: 324312481}
   trigger:
     m_PersistentCalls:
@@ -5138,6 +5139,7 @@ MonoBehaviour:
   priorityNum: 15
   allCameras:
   - {fileID: 324312481}
+  - {fileID: 15221120}
   currentCam: {fileID: 1382601538}
   trigger:
     m_PersistentCalls:
@@ -5923,7 +5925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &606636872
 Transform:
   m_ObjectHideFlags: 0
@@ -5932,13 +5934,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606636871}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -7.569999, y: -7, z: -18.850004}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -23.350006, y: 0, z: -1.4299984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1189314801}
-  m_Father: {fileID: 689227561}
+  m_Father: {fileID: 1059698984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &638112785
 GameObject:
@@ -6117,7 +6119,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 606636872}
   - {fileID: 324312483}
   - {fileID: 1382601536}
   m_Father: {fileID: 0}
@@ -7715,7 +7716,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2103382487}
   - {fileID: 2002677306}
+  - {fileID: 606636872}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1189314798
@@ -9782,6 +9785,7 @@ MonoBehaviour:
   priorityNum: 15
   allCameras:
   - {fileID: 1382601538}
+  - {fileID: 15221120}
   currentCam: {fileID: 324312481}
   trigger:
     m_PersistentCalls:
@@ -10656,6 +10660,7 @@ MonoBehaviour:
   priorityNum: 15
   allCameras:
   - {fileID: 324312481}
+  - {fileID: 1382601538}
   currentCam: {fileID: 15221120}
   trigger:
     m_PersistentCalls:
@@ -52533,12 +52538,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2103382483}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0.3}
-  m_LocalScale: {x: 35.949352, y: 19.54246, z: 19.576807}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0.30000007, y: 0, z: 0.099999994}
+  m_LocalScale: {x: 35.94936, y: 19.54246, z: 19.576813}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2105432094}
+  m_Father: {fileID: 1059698984}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!135 &2103382488
 SphereCollider:
@@ -52592,7 +52597,6 @@ Transform:
   m_Children:
   - {fileID: 1367586197}
   - {fileID: 1470295549}
-  - {fileID: 2103382487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2118462683
@@ -52932,9 +52936,9 @@ SceneRoots:
   - {fileID: 15221121}
   - {fileID: 689227561}
   - {fileID: 2105432094}
-  - {fileID: 1059698984}
   - {fileID: 1530510424}
   - {fileID: 1442042879}
-  - {fileID: 1324219883}
   - {fileID: 1531189635}
+  - {fileID: 1324219883}
   - {fileID: 1615206905}
+  - {fileID: 1059698984}
