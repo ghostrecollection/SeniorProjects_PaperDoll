@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-
+    // -------------------------------------
     // CHARACTER CONTROLLER
     private CharacterController controller;
 
@@ -51,8 +51,7 @@ public class PlayerCharacterController : MonoBehaviour
     [Space(10)]
     [SerializeField] GameObject mainCam;
     [SerializeField] Transform cameraFollowTarget;
-    //private float xRotation;
-    //private float yRotation;
+    // -------------------------------------
 
     // --- START ---
     void Start()
