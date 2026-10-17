@@ -69,7 +69,7 @@ public class PlayerCharacterController : MonoBehaviour
         // Debug.Log($"currentSpeed: {currentSpeed}");
 
         // Interact Function
-        EngageInteraction();
+        // EngageInteraction();
         
         // Movement Function
         OnMove();
@@ -163,7 +163,7 @@ public class PlayerCharacterController : MonoBehaviour
 
 
     // --- ENGAGE INTERACTION ---
-    void EngageInteraction()
+    /*void EngageInteraction()
     {
         if (pInput.interact)
         {
@@ -171,5 +171,5 @@ public class PlayerCharacterController : MonoBehaviour
             pInput.interact = false;
         }
         
-    }
+    }*/
 }

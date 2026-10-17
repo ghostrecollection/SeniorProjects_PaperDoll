@@ -4,7 +4,7 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        Debug.Log("Interacted With Object!");
+        
     }
 
     public void OnHover()

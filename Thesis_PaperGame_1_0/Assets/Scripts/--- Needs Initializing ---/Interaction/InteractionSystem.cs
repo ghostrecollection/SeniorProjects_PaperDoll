@@ -12,15 +12,24 @@ public class InteractionSystem : MonoBehaviour
     // -------------------------------------
     // INPUT REFERENCES
     // Script reference for Player Inputs
+    [Header("Player Input References:")]
+    [Space(10)]
     [SerializeField] private PlayerInputManager pInput;
+    //[SerializeField] PlayerInput pInputReader;
     [SerializeField] GameObject playerReference;
 
+    [Space(10)]
 
-    public Camera cameraRoot;
-    public float distance = 3.0f;
+    [Header("Mouse Position Input Setup:")]
+    [Space(10)]
+    [SerializeField] private Camera cameraRoot;
+    [SerializeField] private LayerMask layerMask;
+
+   
+    //public float distance = 3.0f;
     public Color hoverColor = Color.lightCoral;
 
-    private IInteractable current;
+    private IInteractable interactCurrent;
     private Renderer renderer;
     private Color originalColor;
     // -------------------------------------
@@ -39,41 +48,53 @@ public class InteractionSystem : MonoBehaviour
     // --- UPDATE ---
     void Update()
     {
-        RaycastHit hit;
-        if(Physics.Raycast(cameraRoot.transform.position, cameraRoot.transform.forward, out hit) && hit.collider.TryGetComponent(out IInteractable i))
+        // Reads the mouses position as a Vector3.
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        Ray ray = cameraRoot.ScreenPointToRay(mousePos);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layerMask))
         {
-            if(current != i)
+            transform.position = hit.point;
+            // DEBUG --- Debug.Log(mousePos);
+
+            if(hit.collider.TryGetComponent(out IInteractable i))
             {
-                Clear();
-                current = i;
-                current.OnHover();
-
-                renderer = hit.collider.GetComponent<Renderer>();
-                if (renderer)
+                if (interactCurrent != i)
                 {
-                    originalColor = renderer.material.color;
-                    renderer.material.color = hoverColor;
-                }
+                    Clear();
+                    interactCurrent = i;
+                    interactCurrent.OnHover();
 
-                if (pInput.interact)
-                {
-                    current.Interact();
+                    renderer = hit.collider.GetComponent<Renderer>();
+                    if (renderer)
+                    {
+                        originalColor = renderer.material.color;
+                        renderer.material.color = hoverColor;
+                    }
+
+
+                    // CURRENTLY NOT WORKING
+                    // I think its setting it to true too quickly and too quickly back to false.
+                    if (pInput.interact)
+                    {
+                        Debug.Log("Interacted With Object!");
+                        interactCurrent.Interact();
+                        pInput.interact = false;
+                    }
                 }
-                // if (Keyboard.current[Key.E].wasPressedThisFrame) current.Interact();
             }
             else
             {
                 Clear();
             }
-
-            void Clear()
-            {
-                if (current != null) current.OnHoverExit();
-                if(renderer) renderer.material.color = originalColor;
-                current = null;
-                renderer = null;
-            }
-
         }
+    }
+
+    void Clear()
+    {
+        interactCurrent?.OnHoverExit();
+        if (renderer) renderer.material.color = originalColor;
+        interactCurrent = null;
+        renderer = null;
     }
 }

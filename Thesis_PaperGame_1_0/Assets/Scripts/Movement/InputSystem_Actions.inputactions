@@ -42,7 +42,7 @@
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold(duration=0.1,pressPoint=0.1)",
+                    "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -371,6 +371,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b882f71c-89d0-4525-b533-c632a90dae95",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
