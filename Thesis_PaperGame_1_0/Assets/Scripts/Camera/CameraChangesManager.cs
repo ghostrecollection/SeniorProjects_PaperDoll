@@ -44,7 +44,7 @@ public class CameraChangesManager : MonoBehaviour
     {
         // When entering a certain collider, sets the withinZone bool to true.
         withinZone = true;
-        Debug.Log(withinZone);
+        // DEBUG --- Debug.Log("withinZone = " + withinZone);
     }
 
 
@@ -71,7 +71,7 @@ public class CameraChangesManager : MonoBehaviour
     {
         // When a collider is exited, sets the withinZone bool back to false.
         withinZone = false;
-        Debug.Log(withinZone);
+        // DEBUG --- Debug.Log("withinZone = " + withinZone);
 
         // Checks for player.
         if (other.gameObject.CompareTag("Player"))
