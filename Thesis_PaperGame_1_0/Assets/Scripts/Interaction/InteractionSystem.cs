@@ -42,7 +42,6 @@ public class InteractionSystem : MonoBehaviour
 
     // Looking to include a distance parameter for interaction.
     //public float distance = 3.0f;
-    
     // -------------------------------------
 
 

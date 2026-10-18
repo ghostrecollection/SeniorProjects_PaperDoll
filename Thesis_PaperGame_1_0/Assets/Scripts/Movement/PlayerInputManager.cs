@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
+    // -------------------------------------
     // INPUTS
     [Header("Inputs:")]
     [Space(10)]
@@ -14,6 +15,7 @@ public class PlayerInputManager : MonoBehaviour
     public bool jump;
     // Bool to check for interact key.
     public bool interact;
+    // -------------------------------------
 
     // OnMove Function through Input System.
     void OnMove(InputValue value)

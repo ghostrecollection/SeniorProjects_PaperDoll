@@ -10,16 +10,17 @@ public class CameraChangesManager : MonoBehaviour
     [Space(5)]
 
     // CAMERA REFERENCES
-    [Header("Cameras")]
+    [Header("Cameras:")]
     [Space(10)]
     [SerializeField] public CinemachineCamera zoneCam;
     [SerializeField] public CinemachineCamera mainCam;
+    [Space(5)]
     [SerializeField] public CinemachineCamera[] otherCameras;
     
     [Space(10)]
 
     // VALUES
-    [Header("Priority & Bools")]
+    [Header("Priority & Bools:")]
     [Space(10)]
     [SerializeField] int priorityNum;
     [SerializeField] bool withinZone;
