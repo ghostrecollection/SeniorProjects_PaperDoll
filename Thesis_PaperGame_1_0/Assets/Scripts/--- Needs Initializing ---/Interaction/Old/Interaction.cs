@@ -83,11 +83,11 @@ public class Interaction : MonoBehaviour
     // --- TURN ON CANVAS ---
     public void TurnOnCanvas()
     {
-        if (playerCharacterController.attemptInteraction && canInteract == true)
+        /*if (playerCharacterController.attemptInteraction && canInteract == true)
         {
             // Debug.Log("Pressed E");
             sliderScreen.SetActive(true);
-        }
+        }*/
         
     }
 

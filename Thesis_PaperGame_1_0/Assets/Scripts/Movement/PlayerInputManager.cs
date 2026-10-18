@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputManager : MonoBehaviour
 {
     // INPUTS
-    [Header("Inputs")]
+    [Header("Inputs:")]
     [Space(10)]
     // Vector2 for storing inputs.
     public Vector2 move;

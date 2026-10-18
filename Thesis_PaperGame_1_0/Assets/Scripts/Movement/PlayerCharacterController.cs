@@ -11,7 +11,7 @@ public class PlayerCharacterController : MonoBehaviour
     private PlayerInputManager pInput;
 
     // MOVEMENT
-    [Header("Movement Settings")]
+    [Header("Movement Settings:")]
     [Space(10)]
     [SerializeField] float currentSpeed;
     [SerializeField] float idleSpeed = 0f;
@@ -21,7 +21,7 @@ public class PlayerCharacterController : MonoBehaviour
     [Space(10)]
     [SerializeField] float jumpHeight = 2f;
 
-    [Header("Movement Transitions")]
+    [Header("Movement Transitions:")]
     [Space(10)]
     //[SerializeField] float movementSmoothSpeed = 3f;
     [SerializeField] float rotationSmoothSpeed = 10f;
@@ -29,7 +29,7 @@ public class PlayerCharacterController : MonoBehaviour
     [Space(30)]
 
     // GROUNDING
-    [Header("Grounding Setup")]
+    [Header("Grounding Setup:")]
     [Space(10)]
     [SerializeField] bool isGrounded;
     // Layer for ground detection.
@@ -42,12 +42,12 @@ public class PlayerCharacterController : MonoBehaviour
     [Space(30)]
 
     // INTERACTION
-    [Header("Interaction")]
+    [Header("Interaction:")]
     [Space(10)]
     public bool attemptInteraction = false;
 
     // CAMERA
-    [Header("Camera Settings")]
+    [Header("Camera Settings:")]
     [Space(10)]
     [SerializeField] GameObject mainCam;
     [SerializeField] Transform cameraFollowTarget;
@@ -69,7 +69,7 @@ public class PlayerCharacterController : MonoBehaviour
         // Debug.Log($"currentSpeed: {currentSpeed}");
 
         // Interact Function
-        // EngageInteraction();
+        EngageInteraction();
         
         // Movement Function
         OnMove();
@@ -163,13 +163,15 @@ public class PlayerCharacterController : MonoBehaviour
 
 
     // --- ENGAGE INTERACTION ---
-    /*void EngageInteraction()
+    void EngageInteraction()
     {
         if (pInput.interact)
         {
-            attemptInteraction = !attemptInteraction;
-            pInput.interact = false;
+            attemptInteraction = true;
         }
-        
-    }*/
+        else
+        {
+            attemptInteraction = false;
+        }
+    }
 }
