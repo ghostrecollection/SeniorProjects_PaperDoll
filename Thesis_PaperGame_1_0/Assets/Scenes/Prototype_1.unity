@@ -1938,9 +1938,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4b2e78cd2e4fd46accd31d96608d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem
-  pInput: {fileID: 574031369}
   playerCharacterController: {fileID: 574031368}
   playerReference: {fileID: 574031362}
+  playerInteractDistance: 3
   cameraRoot: {fileID: 1547085181}
   layerMask:
     serializedVersion: 2
