@@ -15,10 +15,10 @@ public class InteractionSystem : MonoBehaviour
     [Header("Player Input References:")]
     [Space(10)]
     // SCRIPTS
-    [SerializeField] private PlayerInputManager pInput;
     [SerializeField] private PlayerCharacterController playerCharacterController;
     // PLAYER REFERENCE
     [SerializeField] GameObject playerReference;
+    [SerializeField] float playerInteractDistance = 3f;
 
     [Space(10)]
     // MOUSE INPUT
@@ -39,9 +39,6 @@ public class InteractionSystem : MonoBehaviour
     [Space(10)]
     // INTERFACE
     private IInteractable interactCurrent;
-
-    // Looking to include a distance parameter for interaction.
-    //public float distance = 3.0f;
     // -------------------------------------
 
 
@@ -50,8 +47,6 @@ public class InteractionSystem : MonoBehaviour
     {
         // Finds the player game object.
         playerReference = GameObject.FindWithTag("Player");
-        // Get PlayerInputManager Script from Player Reference.
-        pInput = playerReference.GetComponent<PlayerInputManager>();
         // Get PlayerCharacterController Script from Player Reference.
         playerCharacterController = playerReference.GetComponent<PlayerCharacterController>();
     }
@@ -83,6 +78,12 @@ public class InteractionSystem : MonoBehaviour
             // If the ray hits...
             if (hit.transform.gameObject.TryGetComponent(out IInteractable i))
             {
+                // Check distance of player.
+                // Im going to do a sphere cast outwards from the player to see if it
+                // interacts with the tagged items if it does then run the following-->
+                Vector3 playerCurrPos = playerReference.transform.position;
+
+
                 Clear();
                 interactCurrent = i;
                 // Currently hovering over an interactable object.
