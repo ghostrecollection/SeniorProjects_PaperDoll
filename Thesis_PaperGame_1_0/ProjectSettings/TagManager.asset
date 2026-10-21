@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ink
   - Ignore
+  - Interactable
   layers:
   - Default
   - TransparentFX

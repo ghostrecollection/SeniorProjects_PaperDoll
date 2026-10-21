@@ -45,6 +45,7 @@ public class PlayerCharacterController : MonoBehaviour
     [Header("Interaction:")]
     [Space(10)]
     public bool attemptInteraction = false;
+    public bool withinInteractDist;
 
     // CAMERA
     [Header("Camera Settings:")]
@@ -172,6 +173,25 @@ public class PlayerCharacterController : MonoBehaviour
         else
         {
             attemptInteraction = false;
+        }
+    }
+
+
+    public void OnChildTriggerEnter(Collider other, GameObject childTrigger)
+    {
+        if (other.gameObject.CompareTag("Interactable"))
+        {
+            Debug.Log("Hello....");
+            withinInteractDist = true;
+        }
+    }
+
+    public void OnChildTriggerExit(Collider other, GameObject childTrigger)
+    {
+        if (other.gameObject.CompareTag("Interactable"))
+        {
+            Debug.Log("Goodbye....");
+            withinInteractDist = false;
         }
     }
 }

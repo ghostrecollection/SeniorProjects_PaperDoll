@@ -18,6 +18,7 @@ public class InteractionSystem : MonoBehaviour
     [SerializeField] private PlayerCharacterController playerCharacterController;
     // PLAYER REFERENCE
     [SerializeField] GameObject playerReference;
+    [SerializeField] CharacterController characterControl;
     [SerializeField] float playerInteractDistance = 3f;
 
     [Space(10)]
@@ -78,32 +79,30 @@ public class InteractionSystem : MonoBehaviour
             // If the ray hits...
             if (hit.transform.gameObject.TryGetComponent(out IInteractable i))
             {
-                // Check distance of player.
-                // Im going to do a sphere cast outwards from the player to see if it
-                // interacts with the tagged items if it does then run the following-->
-                Vector3 playerCurrPos = playerReference.transform.position;
-
-
-                Clear();
-                interactCurrent = i;
-                // Currently hovering over an interactable object.
-                interactCurrent.OnHover();
-
-                // Temporary visual feedback to indicate that the mouse is hovering.
-                // This visual feedback will be changed in a future iteration to suit the art direction.
-                renderer = hit.collider.GetComponent<Renderer>();
-                if (renderer)
+                // Checks if interact object is within the player interact distance.
+                if (playerCharacterController.withinInteractDist == true)
                 {
-                    originalColor = renderer.material.color;
-                    renderer.material.color = hoverColor;
-                }
+                    Clear();
+                    interactCurrent = i;
+                    // Currently hovering over an interactable object.
+                    interactCurrent.OnHover();
 
-                // While hovering, if the player inputs interaction (LeftClick or "E" key)->
-                if (playerCharacterController.attemptInteraction)
-                {
-                    // <- Calls interact
-                    // Currently calling this multiple times due to it being within an update, I need to find a way to make it only call this once.
-                    interactCurrent.Interact();
+                    // Temporary visual feedback to indicate that the mouse is hovering.
+                    // This visual feedback will be changed in a future iteration to suit the art direction.
+                    renderer = hit.collider.GetComponent<Renderer>();
+                    if (renderer)
+                    {
+                        originalColor = renderer.material.color;
+                        renderer.material.color = hoverColor;
+                    }
+
+                    // While hovering, if the player inputs interaction (LeftClick or "E" key)->
+                    if (playerCharacterController.attemptInteraction)
+                    {
+                        // <- Calls interact
+                        // Currently calling this multiple times due to it being within an update, I need to find a way to make it only call this once.
+                        interactCurrent.Interact();
+                    }
                 }
             }
             else
