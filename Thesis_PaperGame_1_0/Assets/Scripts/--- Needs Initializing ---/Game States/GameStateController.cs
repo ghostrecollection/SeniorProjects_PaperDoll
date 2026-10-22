@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
 public class GameStateController : MonoBehaviour
 {
     public static GameStateController instance {  get; private set; }

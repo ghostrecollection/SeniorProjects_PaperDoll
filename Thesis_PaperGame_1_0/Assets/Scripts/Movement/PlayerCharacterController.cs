@@ -92,7 +92,6 @@ public class PlayerCharacterController : MonoBehaviour
     // --- CAMERA SETTINGS --- 
     void CameraSettings()
     {
-
         cameraFollowTarget.rotation = Quaternion.identity;
     }
 
@@ -114,14 +113,10 @@ public class PlayerCharacterController : MonoBehaviour
             if (pInput.run)
             {
                 currentSpeed = runSpeed;
-                //float movementSmoothedSpeed = Mathf.Lerp(currentSpeed, runSpeed, Time.deltaTime * movementSmoothSpeed);
-                //currentSpeed = movementSmoothedSpeed;
             }
             else
             {
                 currentSpeed = walkSpeed;
-                //float movementSmoothedSpeed = Mathf.Lerp(currentSpeed, walkSpeed, Time.deltaTime * movementSmoothSpeed);
-                //currentSpeed = movementSmoothedSpeed;
             }
 
 
@@ -183,7 +178,7 @@ public class PlayerCharacterController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Interactable"))
         {
-            Debug.Log("Hello....");
+            // Debug.Log("Hello....");
             withinInteractDist = true;
         }
     }
@@ -194,7 +189,7 @@ public class PlayerCharacterController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Interactable"))
         {
-            Debug.Log("Goodbye....");
+            // Debug.Log("Goodbye....");
             withinInteractDist = false;
         }
     }

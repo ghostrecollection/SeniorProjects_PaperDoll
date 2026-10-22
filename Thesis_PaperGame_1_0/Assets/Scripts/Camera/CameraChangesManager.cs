@@ -24,11 +24,6 @@ public class CameraChangesManager : MonoBehaviour
     [Space(10)]
     [SerializeField] int priorityNum;
     [SerializeField] bool withinZone;
-
-    [Space(30)]
-
-    // EVENT
-    public UnityEvent trigger;
     // -------------------------------------
 
 
@@ -46,12 +41,7 @@ public class CameraChangesManager : MonoBehaviour
         // When entering a certain collider, sets the withinZone bool to true.
         withinZone = true;
         // DEBUG --- Debug.Log("withinZone = " + withinZone);
-    }
 
-
-    // --- ON TRIGGER STAY ---
-    private void OnTriggerStay(Collider other)
-    {
         // Checks if the player is within the zone.
         if (withinZone == true && other.gameObject.CompareTag("Player"))
         {
@@ -62,7 +52,6 @@ public class CameraChangesManager : MonoBehaviour
             }
             // Sets the zoneCam to the highest priority --> Making it the active camera.
             zoneCam.Priority = priorityNum;
-            trigger.Invoke();
         }
     }
 
@@ -84,7 +73,6 @@ public class CameraChangesManager : MonoBehaviour
             }
             // Sets the mainCam to the highest priority --> Making the default camera active again.
             mainCam.Priority = priorityNum;
-            trigger.Invoke();
         }
     }
 
