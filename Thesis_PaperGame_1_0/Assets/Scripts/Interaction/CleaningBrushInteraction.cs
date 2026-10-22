@@ -3,9 +3,11 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CleaningBrushInteraction : MonoBehaviour, IInteractable
 {
+    // SOME TEMP HARDCODED ELEMENTS TO FIX LATER.
     // -------------------------------------
     [Header("Input:")]
     [Space(10)]
@@ -18,6 +20,21 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     [Space(10)]
     // INPUT VISUAL PROMPT
     [SerializeField] GameObject interactPrompt;
+    // SLIDER
+    [SerializeField] GameObject sliderScreen;
+    [SerializeField] Slider slider;
+
+    [Header("Ink Components:")]
+    [Space(10)]
+    [SerializeField] Material inkMat;
+    [SerializeField] bool startFade = false;
+
+    [Header("Time:")]
+    [Space(10)]
+    private float elapsedTime = 0f;
+    [SerializeField] float targetDissolveTime = 5f;
+    [SerializeField] float currentValue = 0f;
+    [SerializeField] float targetValue = 1f;
 
     [Header("Cameras:")]
     [Space(10)]
@@ -31,8 +48,8 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     [Header("Interaction Parameters:")]
     [Space(10)]
     // BOOLS
-    [SerializeField] bool interactDone = false;
-    public bool withinInteract = false;
+    [HideInInspector] bool interactDone = false;
+    [HideInInspector] public bool withinInteract = false;
     // PLAYER TARGET POSITION
     [SerializeField] GameObject targetOrientation;
     private Vector3 interactPosition;
@@ -46,6 +63,9 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     {
         // Finds the player game object.
         playerReference = GameObject.FindWithTag("Player");
+        // Renderer.
+        Renderer renderer = GetComponent<Renderer>();
+        inkMat = renderer.material;
     }
 
 
@@ -66,9 +86,16 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
             // Switches to new camera.
             interactCam.Priority = interactPriorityNum;
 
-            MovePlayerPosition();
+            //MovePlayerPosition();
 
-            StartCoroutine(Wait());
+            sliderScreen.SetActive(true);
+
+            if(slider.value > 0)
+            {
+                elapsedTime = 0;
+                startFade = true;
+                StartCoroutine(Wait());
+            }
         }
     }
 
@@ -95,9 +122,11 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     // --- UPDATE ---
     public void Update()
     {
+        if(startFade) InkFade();
+
         // Sets the game state qualities.
         // I will likely move this in the future.
-        if(GameStateController.instance.gstate.state == GameState.gameState.MOUSE)
+        if (GameStateController.instance.gstate.state == GameState.gameState.MOUSE)
         {
             playerInput.actions.FindAction("Move").Disable();
             playerInput.actions.FindAction("Run").Disable();
@@ -120,9 +149,11 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
 
         if (interactDone)
         {
-            withinInteract = false;
             interactCam.Priority = 0;
+
+            withinInteract = false;
             interactDone = false;
+            startFade = false;
 
             // Changes game state back to normal.
             GameStateController.instance.ChangeState("NORMAL");
@@ -130,7 +161,19 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
         }
     }
 
-    void MovePlayerPosition()
+    void InkFade()
+    {
+        if (elapsedTime < targetDissolveTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / targetDissolveTime;
+            float value = Mathf.Lerp(currentValue, targetValue, t);
+            inkMat.SetFloat("_AlphaClipThreshold", value);
+        }
+    }
+
+
+    /*void MovePlayerPosition()
     {
         interactPosition = targetOrientation.transform.position;
         interactRotation = targetOrientation.transform.eulerAngles;
@@ -139,5 +182,5 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
         // Will polish in another pass -- add lerping etc.
         playerReference.transform.position = interactPosition;
         playerReference.transform.eulerAngles = interactRotation;
-    }
+    }*/
 }
