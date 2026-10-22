@@ -16,6 +16,7 @@ public class InteractionSystem : MonoBehaviour
     [Space(10)]
     // SCRIPTS
     [SerializeField] private PlayerCharacterController playerCharacterController;
+    [SerializeField] private CleaningBrushInteraction interactionTypeOne;
     // PLAYER REFERENCE
     [SerializeField] GameObject playerReference;
     [SerializeField] bool hasInteracted = false;
@@ -88,7 +89,7 @@ public class InteractionSystem : MonoBehaviour
                     // Temporary visual feedback to indicate that the mouse is hovering.
                     // This visual feedback will be changed in a future iteration to suit the art direction.
                     renderer = hit.collider.GetComponent<Renderer>();
-                    if (renderer)
+                    if (renderer && !interactionTypeOne.withinInteract)
                     {
                         originalColor = renderer.material.color;
                         renderer.material.color = hoverColor;
@@ -98,6 +99,9 @@ public class InteractionSystem : MonoBehaviour
                 // While hovering, if the player inputs interaction (LeftClick or "E" key)->
                 if (playerCharacterController.attemptInteraction && !hasInteracted)
                 {
+                    // Removes the hover color.
+                    if (renderer) renderer.material.color = originalColor;
+
                     // <- Calls interact
                     interactCurrent.Interact();
                     hasInteracted = true;

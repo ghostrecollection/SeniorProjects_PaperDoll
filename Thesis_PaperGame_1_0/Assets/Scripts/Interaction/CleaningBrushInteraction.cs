@@ -11,6 +11,7 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     [Space(10)]
     // INPUT
     [SerializeField] PlayerInput playerInput;
+    [SerializeField] CharacterController characterController;
     [SerializeField] GameObject playerReference;
 
     [Header("Canvas Components:")]
@@ -31,7 +32,7 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     [Space(10)]
     // BOOLS
     [SerializeField] bool interactDone = false;
-    private bool withinInteract = false;
+    public bool withinInteract = false;
     // PLAYER TARGET POSITION
     [SerializeField] GameObject targetOrientation;
     private Vector3 interactPosition;
@@ -45,8 +46,6 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     {
         // Finds the player game object.
         playerReference = GameObject.FindWithTag("Player");
-        interactPosition = targetOrientation.transform.position;
-        interactRotation = targetOrientation.transform.eulerAngles;
     }
 
 
@@ -67,10 +66,7 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
             // Switches to new camera.
             interactCam.Priority = interactPriorityNum;
 
-            // Add some sort of player target position and rotation for them to move to.
-            // Will polish in another pass -- add lerping or 
-            playerReference.transform.position = interactPosition;
-            playerReference.transform.eulerAngles = interactRotation;
+            MovePlayerPosition();
 
             StartCoroutine(Wait());
         }
@@ -132,5 +128,16 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
             GameStateController.instance.ChangeState("NORMAL");
             // DEBUG --- Debug.Log($"State: {GameStateController.instance.gstate.state.ToString()}");
         }
+    }
+
+    void MovePlayerPosition()
+    {
+        interactPosition = targetOrientation.transform.position;
+        interactRotation = targetOrientation.transform.eulerAngles;
+
+        // Add some sort of player target position and rotation for them to move to.
+        // Will polish in another pass -- add lerping etc.
+        playerReference.transform.position = interactPosition;
+        playerReference.transform.eulerAngles = interactRotation;
     }
 }
