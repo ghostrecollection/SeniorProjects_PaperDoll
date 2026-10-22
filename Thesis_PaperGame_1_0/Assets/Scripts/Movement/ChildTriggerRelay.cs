@@ -10,6 +10,8 @@ public class ChildTriggerRelay : MonoBehaviour
     // PLAYER REFERENCE
     [SerializeField] GameObject playerReference;
     // -------------------------------------
+
+
     // --- START ---
     void Start()
     {
@@ -19,6 +21,8 @@ public class ChildTriggerRelay : MonoBehaviour
         parentCharacterController = playerReference.GetComponent<PlayerCharacterController>();
     }
 
+
+    // --- ON TRIGGER ENTER ---
     void OnTriggerEnter(Collider other)
     {
         parentCharacterController.OnChildTriggerEnter(other, gameObject);

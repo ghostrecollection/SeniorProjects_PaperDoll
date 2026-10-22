@@ -45,7 +45,7 @@ public class PlayerCharacterController : MonoBehaviour
     [Header("Interaction:")]
     [Space(10)]
     public bool attemptInteraction = false;
-    public bool withinInteractDist;
+    public bool withinInteractDist = false;
 
     // CAMERA
     [Header("Camera Settings:")]
@@ -53,6 +53,7 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField] GameObject mainCam;
     [SerializeField] Transform cameraFollowTarget;
     // -------------------------------------
+    
 
     // --- START ---
     void Start()
@@ -177,6 +178,7 @@ public class PlayerCharacterController : MonoBehaviour
     }
 
 
+    // --- ON CHILD TRIGGER ENTER ---
     public void OnChildTriggerEnter(Collider other, GameObject childTrigger)
     {
         if (other.gameObject.CompareTag("Interactable"))
@@ -186,6 +188,8 @@ public class PlayerCharacterController : MonoBehaviour
         }
     }
 
+
+    // --- ON CHILD TRIGGER EXIT ---
     public void OnChildTriggerExit(Collider other, GameObject childTrigger)
     {
         if (other.gameObject.CompareTag("Interactable"))

@@ -18,8 +18,7 @@ public class InteractionSystem : MonoBehaviour
     [SerializeField] private PlayerCharacterController playerCharacterController;
     // PLAYER REFERENCE
     [SerializeField] GameObject playerReference;
-    [SerializeField] CharacterController characterControl;
-    [SerializeField] float playerInteractDistance = 3f;
+    [SerializeField] bool hasInteracted = false;
 
     [Space(10)]
     // MOUSE INPUT
@@ -36,7 +35,7 @@ public class InteractionSystem : MonoBehaviour
     public Color hoverColor = Color.lightCoral;
     private Color originalColor;
     private Renderer renderer;
-
+    
     [Space(10)]
     // INTERFACE
     private IInteractable interactCurrent;
@@ -77,10 +76,9 @@ public class InteractionSystem : MonoBehaviour
             // DEBUG --- Debug.Log(mousePos);
 
             // If the ray hits...
-            if (hit.transform.gameObject.TryGetComponent(out IInteractable i))
+            if (hit.transform.gameObject.TryGetComponent(out IInteractable i) && playerCharacterController.withinInteractDist == true)
             {
-                // Checks if interact object is within the player interact distance.
-                if (playerCharacterController.withinInteractDist == true)
+                if (i != interactCurrent)
                 {
                     Clear();
                     interactCurrent = i;
@@ -95,15 +93,18 @@ public class InteractionSystem : MonoBehaviour
                         originalColor = renderer.material.color;
                         renderer.material.color = hoverColor;
                     }
-
-                    // While hovering, if the player inputs interaction (LeftClick or "E" key)->
-                    if (playerCharacterController.attemptInteraction)
-                    {
-                        // <- Calls interact
-                        // Currently calling this multiple times due to it being within an update, I need to find a way to make it only call this once.
-                        interactCurrent.Interact();
-                    }
                 }
+                
+                // While hovering, if the player inputs interaction (LeftClick or "E" key)->
+                if (playerCharacterController.attemptInteraction && !hasInteracted)
+                {
+                    // <- Calls interact
+                    interactCurrent.Interact();
+                    hasInteracted = true;
+                    // Resetting the bool quicker here.
+                    playerCharacterController.attemptInteraction = false;
+                }
+                return;
             }
             else
             {
@@ -117,12 +118,18 @@ public class InteractionSystem : MonoBehaviour
     // --- CLEAR ---
     void Clear()
     {
-        // If the mouse stops hovering over an interactable->
-        interactCurrent?.OnHoverExit();
-        // <-removes the visual feedback that the mouse is over an interactable object.
-        if (renderer) renderer.material.color = originalColor;
-        interactCurrent = null;
-        renderer = null;
+        if (interactCurrent != null)
+        {
+            // If the mouse stops hovering over an interactable->
+            interactCurrent?.OnHoverExit();
+            // <-removes the visual feedback that the mouse is over an interactable object.
+            if (renderer) renderer.material.color = originalColor;
+            interactCurrent = null;
+            renderer = null;
+
+            hasInteracted = false;
+        }
+        
     }
 
 }
