@@ -77,7 +77,7 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
 
         // Changes the game state.
         GameStateController.instance.ChangeState("MOUSE");
-        // DEBUG --- Debug.Log($"State: {GameStateController.instance.gstate.state.ToString()}");
+        Debug.Log($"State: {GameStateController.instance.gstate.state.ToString()}");
 
         if (!interactDone)
         {
@@ -144,20 +144,32 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         interactDone = true;
 
         if (interactDone)
         {
+            sliderScreen.SetActive(false);
+
+            // Changes game state back to normal.
+            GameStateController.instance.ChangeState("NORMAL");
+            Debug.Log($"State: {GameStateController.instance.gstate.state.ToString()}");
+            playerInput.actions.FindAction("Move").Enable();
+            playerInput.actions.FindAction("Run").Enable();
+            playerInput.actions.FindAction("Jump").Enable();
+
+            slider.value = 0;
+
             interactCam.Priority = 0;
 
             withinInteract = false;
             interactDone = false;
             startFade = false;
+        }
 
-            // Changes game state back to normal.
-            GameStateController.instance.ChangeState("NORMAL");
-            // DEBUG --- Debug.Log($"State: {GameStateController.instance.gstate.state.ToString()}");
+        if(!interactDone && GameStateController.instance.gstate.state == GameState.gameState.NORMAL)
+        {
+            gameObject.SetActive(false);
         }
     }
 
