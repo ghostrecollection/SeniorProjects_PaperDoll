@@ -32,6 +32,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 96755cacc9f51d741a4799976a211f4c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BaseColor:
+        m_Texture: {fileID: 2800000, guid: 3bc9136dcf968f54aae65ea7624cdbc5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -56,6 +60,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HighlightMask:
+        m_Texture: {fileID: 2800000, guid: 77050b3e3071a5a42827f592056f479f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -64,12 +72,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: abb9ea604a586a94e8633a57822ce771, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e74df2a9db844c87b0f1ba2e3a07357d_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 0ef0ce7b22cec5c4d8d2ab0f1c35e6d3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -81,7 +97,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Surface_HighlightTexture:
-        m_Texture: {fileID: 2800000, guid: bd7bfe06191be3e43902a0fb25676b68, type: 3}
+        m_Texture: {fileID: 2800000, guid: 287804d2021879643a351278722a9cb3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -151,6 +167,7 @@ Material:
     - _Surface_Movement_Speed: 7
     - _Surface_Movement_Strength: 2
     - _Surface_NoiseSpeed: 0.1
+    - _Surface_PosterizeSteps: 50
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
@@ -163,8 +180,8 @@ Material:
     - _Movement_MaskOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Movement_MaskSpread: {r: 0.4, g: 0.4, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Surface_BaseColor: {r: 0.6208608, g: 0.6886792, b: 0.4970185, a: 1}
-    - _Surface_HighlightColor: {r: 1.2021782, g: 1.0416099, b: 0.40261632, a: 1}
+    - _Surface_BaseColor: {r: 0.68201375, g: 0.7311321, b: 0.5690415, a: 1}
+    - _Surface_HighlightColor: {r: 1.4980392, g: 1.4812075, b: 0.5019608, a: 1}
     - _Surface_HighlightScale: {r: 1, g: 1, b: 0, a: 0}
     - _Surface_Highlight_Color: {r: 1, g: 1, b: 1, a: 1}
     - _UV_Scale: {r: 4, g: 4, b: 0, a: 0}
