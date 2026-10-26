@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Cinemachine;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -15,26 +16,17 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     [SerializeField] PlayerInput playerInput;
     [SerializeField] CharacterController characterController;
     [SerializeField] GameObject playerReference;
+    [SerializeField] InteractionSystem interactionSystem;
 
     [Header("Canvas Components:")]
     [Space(10)]
     // INPUT VISUAL PROMPT
     [SerializeField] GameObject interactPrompt;
-    // SLIDER
-    [SerializeField] GameObject sliderScreen;
-    [SerializeField] Slider slider;
+    [SerializeField] GameObject cleaningScreen;
 
     [Header("Ink Components:")]
     [Space(10)]
     [SerializeField] Material inkMat;
-    [SerializeField] bool startFade = false;
-
-    [Header("Time:")]
-    [Space(10)]
-    private float elapsedTime = 0f;
-    [SerializeField] float targetDissolveTime = 5f;
-    [SerializeField] float currentValue = 0f;
-    [SerializeField] float targetValue = 1f;
 
     [Header("Cameras:")]
     [Space(10)]
@@ -54,6 +46,11 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     [SerializeField] GameObject targetOrientation;
     private Vector3 interactPosition;
     private Vector3 interactRotation;
+
+    // TEMP PARAMS
+    private bool holdingMouse;
+    private Vector3 cleaningStartPoint;
+    public bool interactionFinished;
     // -------------------------------------
 
     // Specific INK interaction outcomes using my interaction system as structure:
@@ -86,16 +83,9 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
             // Switches to new camera.
             interactCam.Priority = interactPriorityNum;
 
+            cleaningScreen.SetActive(true);
+
             //MovePlayerPosition();
-
-            sliderScreen.SetActive(true);
-
-            if(slider.value > 0)
-            {
-                elapsedTime = 0;
-                startFade = true;
-                StartCoroutine(Wait());
-            }
         }
     }
 
@@ -122,8 +112,6 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     // --- UPDATE ---
     public void Update()
     {
-        if(startFade) InkFade();
-
         // Sets the game state qualities.
         // I will likely move this in the future.
         if (GameStateController.instance.gstate.state == GameState.gameState.MOUSE)
@@ -139,17 +127,54 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
             playerInput.actions.FindAction("Run").Enable();
             playerInput.actions.FindAction("Jump").Enable();
         }
+
+        // Counting Logic:
+        if (withinInteract)
+        {
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                holdingMouse = true;
+                // Makes the point for the formula based off where the player clicks in the screen.
+                cleaningStartPoint = interactionSystem.mousePos;
+                Debug.Log("Holding Mouse");
+            }
+
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
+            {
+                holdingMouse = false;
+                Debug.Log("Released Mouse");
+            }
+
+            if (holdingMouse && Mouse.current.leftButton.isPressed)
+            {
+                // NOTE: I want to add a slower mouse sensitivity here.
+
+                float distance = Mathf.Max(interactionSystem.mousePos.x - cleaningStartPoint.x);
+                
+                float alphaClipValue = Mathf.InverseLerp(0f,1000f, distance);
+
+                inkMat.SetFloat("_AlphaClipThreshold", alphaClipValue);
+                // Debug.Log($"Distance: {distance}");
+
+                if(alphaClipValue > 0.7f) interactionFinished = true;
+            }
+
+            if (interactionFinished)
+            {
+                StartCoroutine(Wait());
+            }
+        }
     }
 
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(.5f);
         interactDone = true;
 
         if (interactDone)
         {
-            sliderScreen.SetActive(false);
+            cleaningScreen.SetActive(false);
 
             // Changes game state back to normal.
             GameStateController.instance.ChangeState("NORMAL");
@@ -158,13 +183,10 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
             playerInput.actions.FindAction("Run").Enable();
             playerInput.actions.FindAction("Jump").Enable();
 
-            slider.value = 0;
-
             interactCam.Priority = 0;
 
             withinInteract = false;
             interactDone = false;
-            startFade = false;
         }
 
         if(!interactDone && GameStateController.instance.gstate.state == GameState.gameState.NORMAL)
@@ -173,18 +195,7 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
         }
     }
 
-    void InkFade()
-    {
-        if (elapsedTime < targetDissolveTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / targetDissolveTime;
-            float value = Mathf.Lerp(currentValue, targetValue, t);
-            inkMat.SetFloat("_AlphaClipThreshold", value);
-        }
-    }
-
-
+    
     /*void MovePlayerPosition()
     {
         interactPosition = targetOrientation.transform.position;

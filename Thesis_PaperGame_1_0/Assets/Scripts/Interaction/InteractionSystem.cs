@@ -25,6 +25,7 @@ public class InteractionSystem : MonoBehaviour
     // MOUSE INPUT
     [Header("Mouse Position Input Setup:")]
     [Space(10)]
+    [SerializeField] public Vector3 mousePos;
     [SerializeField] private Camera cameraRoot;
     [SerializeField] private LayerMask layerMask;
 
@@ -65,7 +66,7 @@ public class InteractionSystem : MonoBehaviour
     void CastInteraction()
     {
         // Reads the mouses position as a Vector3.
-        Vector3 mousePos = Mouse.current.position.ReadValue();
+        mousePos = Mouse.current.position.ReadValue();
         // Creates a ray from the mouse position to the camera.
         Ray ray = cameraRoot.ScreenPointToRay(mousePos);
 
@@ -74,7 +75,7 @@ public class InteractionSystem : MonoBehaviour
         {
             // Moves to the positon from the hit location.
             transform.position = hit.point;
-            // DEBUG --- Debug.Log(mousePos);
+            //Debug.Log(mousePos);
 
             // If the ray hits...
             if (hit.transform.gameObject.TryGetComponent(out IInteractable i) && playerCharacterController.withinInteractDist == true)
