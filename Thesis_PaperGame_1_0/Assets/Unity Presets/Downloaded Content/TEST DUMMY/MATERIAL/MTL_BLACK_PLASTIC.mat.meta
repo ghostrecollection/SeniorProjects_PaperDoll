@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 82b9029723e2f2a4db5f10fd6b5db99c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 312460
+  packageName: Test Dummy
+  packageVersion: 1.0
+  assetPath: Assets/TEST DUMMY/MATERIAL/MTL_BLACK_PLASTIC.mat
+  uploadId: 742873

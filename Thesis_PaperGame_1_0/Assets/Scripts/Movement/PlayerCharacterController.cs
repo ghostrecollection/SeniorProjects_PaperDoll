@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class PlayerCharacterController : MonoBehaviour
 {
@@ -52,6 +54,13 @@ public class PlayerCharacterController : MonoBehaviour
     [Space(10)]
     [SerializeField] GameObject mainCam;
     [SerializeField] Transform cameraFollowTarget;
+
+    // TEST PARAMS
+    public NavMeshAgent playerNavMesh;
+    public Animator playerAnimator;
+    public GameObject targetDest;
+    public InteractionSystem interactScript;
+    public Camera cameraRoot;
     // -------------------------------------
     
 
@@ -78,6 +87,26 @@ public class PlayerCharacterController : MonoBehaviour
 
         // Jump and Gravity Function
         JumpAndGravity();
+
+        /*if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Ray ray = cameraRoot.ScreenPointToRay(interactScript.mousePos);
+            RaycastHit hitPoint;
+            if(Physics.Raycast(ray, out hitPoint))
+            {
+                targetDest.transform.position = hitPoint.point;
+                playerNavMesh.SetDestination(hitPoint.point);
+            }
+        }
+
+        if(playerNavMesh.velocity != Vector3.zero)
+        {
+            playerAnimator.SetBool("isWalking", true);
+        }
+        else if(playerAnimator.velocity == Vector3.zero)
+        {
+            playerAnimator.SetBool("isWalking", false);
+        }*/
 
     }
 
