@@ -15,7 +15,6 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     // INPUT
     [SerializeField] PlayerInput playerInput;
     [SerializeField] CharacterController characterController;
-    [SerializeField] GameObject playerReference;
     [SerializeField] InteractionSystem interactionSystem;
 
     [Header("Canvas Components:")]
@@ -42,15 +41,14 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     // BOOLS
     [HideInInspector] bool interactDone = false;
     [HideInInspector] public bool withinInteract = false;
-    // PLAYER TARGET POSITION
-    [SerializeField] GameObject targetOrientation;
-    private Vector3 interactPosition;
-    private Vector3 interactRotation;
+    // MOUSE
+    [HideInInspector] bool holdingMouse;
+    [HideInInspector] private float targetDistance = 0f;
+    [HideInInspector] private float virtualDistance = 0f;
+    [HideInInspector] private float maxDistance;
+    [SerializeField] float sensitivity = 0.5f;
 
-    // TEMP PARAMS
-    private bool holdingMouse;
-    private Vector3 cleaningStartPoint;
-    public bool interactionFinished;
+
     // -------------------------------------
 
     // Specific INK interaction outcomes using my interaction system as structure:
@@ -58,8 +56,6 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     // --- START ---
     public void Start()
     {
-        // Finds the player game object.
-        playerReference = GameObject.FindWithTag("Player");
         // Renderer.
         Renderer renderer = GetComponent<Renderer>();
         inkMat = renderer.material;
@@ -134,8 +130,6 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 holdingMouse = true;
-                // Makes the point for the formula based off where the player clicks in the screen.
-                cleaningStartPoint = interactionSystem.mousePos;
                 Debug.Log("Holding Mouse");
             }
 
@@ -147,19 +141,24 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
 
             if (holdingMouse && Mouse.current.leftButton.isPressed)
             {
-                // NOTE: I want to add a slower mouse sensitivity here.
+                // NOTE: Sensitivity currently not really working.. will work on later;
+                Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
-                float distance = Mathf.Max(interactionSystem.mousePos.x - cleaningStartPoint.x);
-                
-                float alphaClipValue = Mathf.InverseLerp(0f,1000f, distance);
+                virtualDistance += mouseDelta.magnitude * sensitivity;
+
+                virtualDistance = Mathf.Max(0f, virtualDistance);
+
+                maxDistance = targetDistance > 0f ? targetDistance : Screen.width/3;
+
+                float alphaClipValue = Mathf.InverseLerp(0f,maxDistance, virtualDistance);
 
                 inkMat.SetFloat("_AlphaClipThreshold", alphaClipValue);
                 // Debug.Log($"Distance: {distance}");
 
-                if(alphaClipValue > 0.7f) interactionFinished = true;
+                if(alphaClipValue > 0.7f) interactDone = true;
             }
 
-            if (interactionFinished)
+            if (interactDone)
             {
                 StartCoroutine(Wait());
             }
@@ -167,6 +166,7 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
     }
 
 
+    // --- WAIT --- 
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(.5f);
@@ -189,21 +189,10 @@ public class CleaningBrushInteraction : MonoBehaviour, IInteractable
             interactDone = false;
         }
 
+        // Ink interaction is complete an turns off the object!
         if(!interactDone && GameStateController.instance.gstate.state == GameState.gameState.NORMAL)
         {
             gameObject.SetActive(false);
         }
     }
-
-    
-    /*void MovePlayerPosition()
-    {
-        interactPosition = targetOrientation.transform.position;
-        interactRotation = targetOrientation.transform.eulerAngles;
-
-        // Add some sort of player target position and rotation for them to move to.
-        // Will polish in another pass -- add lerping etc.
-        playerReference.transform.position = interactPosition;
-        playerReference.transform.eulerAngles = interactRotation;
-    }*/
 }
