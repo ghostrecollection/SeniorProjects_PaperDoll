@@ -61,6 +61,8 @@ public class PlayerCharacterController : MonoBehaviour
     public GameObject targetDest;
     public InteractionSystem interactScript;
     public Camera cameraRoot;
+    public Vector3 mousePosition;
+    public LayerMask layerMask;
     // -------------------------------------
     
 
@@ -88,12 +90,15 @@ public class PlayerCharacterController : MonoBehaviour
         // Jump and Gravity Function
         JumpAndGravity();
 
-        /*if (Mouse.current.leftButton.wasPressedThisFrame)
+        mousePosition = Mouse.current.position.ReadValue();
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Ray ray = cameraRoot.ScreenPointToRay(interactScript.mousePos);
+            Ray ray = cameraRoot.ScreenPointToRay(mousePosition);
             RaycastHit hitPoint;
-            if(Physics.Raycast(ray, out hitPoint))
+            if(Physics.Raycast(ray, out hitPoint, layerMask))
             {
+                Debug.Log("Hit Point" + hitPoint.point);
                 targetDest.transform.position = hitPoint.point;
                 playerNavMesh.SetDestination(hitPoint.point);
             }
@@ -106,7 +111,7 @@ public class PlayerCharacterController : MonoBehaviour
         else if(playerAnimator.velocity == Vector3.zero)
         {
             playerAnimator.SetBool("isWalking", false);
-        }*/
+        }
 
     }
 

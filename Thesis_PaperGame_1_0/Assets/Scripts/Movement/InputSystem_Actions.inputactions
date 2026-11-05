@@ -17,6 +17,16 @@
                     "priority": 0
                 },
                 {
+                    "name": "ClickMove",
+                    "type": "Button",
+                    "id": "bac6fdd3-caff-4965-bf87-1c33842670c4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "Run",
                     "type": "PassThrough",
                     "id": "641cd816-40e6-41b4-8c3d-04687c349290",
@@ -383,6 +393,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "481aee8d-7ff6-467d-b4d1-d6a9909c47e0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickMove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
