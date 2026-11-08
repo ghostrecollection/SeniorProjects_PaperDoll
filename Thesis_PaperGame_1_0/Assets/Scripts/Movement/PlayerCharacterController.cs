@@ -56,13 +56,12 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField] Transform cameraFollowTarget;
 
     // TEST PARAMS
-    public NavMeshAgent playerNavMesh;
+    /*public NavMeshAgent playerNavAgent;
     public Animator playerAnimator;
     public GameObject targetDest;
-    public InteractionSystem interactScript;
-    public Camera cameraRoot;
-    public Vector3 mousePosition;
     public LayerMask layerMask;
+
+    private Vector3 mousePosition;*/
     // -------------------------------------
     
 
@@ -90,30 +89,41 @@ public class PlayerCharacterController : MonoBehaviour
         // Jump and Gravity Function
         JumpAndGravity();
 
-        mousePosition = Mouse.current.position.ReadValue();
+        //PointandClickPosition();
+    }
 
+    /*void PointandClickPosition()
+    {
+        // MOVEMENT
+        mousePosition = Mouse.current.position.ReadValue();
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Ray ray = cameraRoot.ScreenPointToRay(mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
             RaycastHit hitPoint;
-            if(Physics.Raycast(ray, out hitPoint, layerMask))
+            if (Physics.Raycast(ray, out hitPoint, Mathf.Infinity, layerMask))
             {
                 Debug.Log("Hit Point" + hitPoint.point);
                 targetDest.transform.position = hitPoint.point;
-                playerNavMesh.SetDestination(hitPoint.point);
+                playerNavAgent.SetDestination(hitPoint.point);
             }
         }
 
-        if(playerNavMesh.velocity != Vector3.zero)
+        if (playerNavAgent.hasPath && playerNavAgent.remainingDistance > playerNavAgent.stoppingDistance && playerNavAgent.velocity.sqrMagnitude < 0.01f)
+        {
+            Debug.Log("Agent has path but no velocity");
+        }
+
+        // ANIMATION
+        if (playerNavAgent.velocity != Vector3.zero)
         {
             playerAnimator.SetBool("isWalking", true);
         }
-        else if(playerAnimator.velocity == Vector3.zero)
+        else if (playerNavAgent.velocity == Vector3.zero)
         {
             playerAnimator.SetBool("isWalking", false);
         }
 
-    }
+    }*/
 
 
     // --- LATE UPDATE --- 

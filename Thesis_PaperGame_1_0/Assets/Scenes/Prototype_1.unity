@@ -190,8 +190,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15221117}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2136702, y: 0.1740483, z: -0.038718462, w: 0.9604963}
-  m_LocalPosition: {x: -16.961977, y: 4.035969, z: -9.032002}
+  m_LocalRotation: {x: 0.21377759, y: 0.17409705, z: -0.038750138, w: 0.9604623}
+  m_LocalPosition: {x: -16.961992, y: 4.036016, z: -9.031974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3278,7 +3278,7 @@ GameObject:
   - component: {fileID: 361908126}
   - component: {fileID: 361908125}
   m_Layer: 0
-  m_Name: Guide
+  m_Name: Point&ClickGuide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3299,7 +3299,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -5596,15 +5596,6 @@ MonoBehaviour:
   withinInteractDist: 0
   mainCam: {fileID: 15221117}
   cameraFollowTarget: {fileID: 1042097652}
-  playerNavMesh: {fileID: 574031371}
-  playerAnimator: {fileID: 2138079432}
-  targetDest: {fileID: 361908124}
-  interactScript: {fileID: 147005491}
-  cameraRoot: {fileID: 1547085181}
-  mousePosition: {x: 0, y: 0, z: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &574031369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5667,7 +5658,7 @@ NavMeshAgent:
   m_AngularSpeed: 600
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: -0.1
@@ -5892,7 +5883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &655595115
 Transform:
   m_ObjectHideFlags: 0
@@ -6376,7 +6367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803809804}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08591051, y: -0.4785996, z: 0.04712257, w: 0.87254876}
+  m_LocalRotation: {x: 0.08591052, y: -0.47859964, z: 0.04712257, w: 0.87254876}
   m_LocalPosition: {x: -1.31, y: 3.95, z: -7.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9830,7 +9821,7 @@ MonoBehaviour:
     m_Bits: 192
   m_UseGeometry: 0
   m_DefaultArea: 0
-  m_GenerateLinks: 0
+  m_GenerateLinks: 1
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
@@ -47193,8 +47184,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547085179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2137224, y: 0.17409915, z: -0.03874011, w: 0.9604746}
-  m_LocalPosition: {x: -16.056227, y: 2.8295567, z: -6.6187825}
+  m_LocalRotation: {x: 0.21372391, y: 0.17409939, z: -0.038740452, w: 0.9604742}
+  m_LocalPosition: {x: -16.056229, y: 2.829577, z: -6.618778}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -85430,7 +85421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2047158661
 Transform:
   m_ObjectHideFlags: 0
@@ -85554,7 +85545,7 @@ Transform:
   m_GameObject: {fileID: 2088803501}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10503727, y: 0.31168854, z: -0.034691215, w: 0.9437235}
-  m_LocalPosition: {x: -46.75907, y: 0.75890183, z: -6.8127136}
+  m_LocalPosition: {x: -46.75907, y: 0.75890183, z: -6.8127127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86552,11 +86543,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 65727362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!95 &2138079432 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ab6f83c13fed99d43b0d47944ee75da0, type: 3}
-  m_PrefabInstance: {fileID: 4886853946029760476}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4886853946029760476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86731,7 +86717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ab6f83c13fed99d43b0d47944ee75da0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3076138552580877421, guid: ab6f83c13fed99d43b0d47944ee75da0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
