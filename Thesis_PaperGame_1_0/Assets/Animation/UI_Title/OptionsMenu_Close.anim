@@ -31,7 +31,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.083739035
       - serializedVersion: 3
-        time: 1
+        time: 0.5
         value: 1050
         inSlope: 78.054565
         outSlope: 78.054565
@@ -71,7 +71,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -101,7 +101,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.083739035
       - serializedVersion: 3
-        time: 1
+        time: 0.5
         value: 1050
         inSlope: 78.054565
         outSlope: 78.054565

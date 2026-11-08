@@ -3,8 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreenInteractions : MonoBehaviour
 {
-    //[SerializeField] GameObject optionsMenu;
+    // -------------------------------------
     [SerializeField] Animator optionsMenuAnimator;
+    // -------------------------------------
+
 
     // --- ON PLAY BUTTON ---
     public void OnPlayButton()
@@ -17,7 +19,7 @@ public class TitleScreenInteractions : MonoBehaviour
     public void OnOptionsButton()
     {
         // Opens a new screen -- will add details later.
-        Debug.Log("Accessed options menu!");
+        // Debug.Log("Accessed options menu!");
         optionsMenuAnimator.Play("OptionsMenu_Open");
     }
 
@@ -25,7 +27,7 @@ public class TitleScreenInteractions : MonoBehaviour
     // --- ON EXIT OPTION MENU ---
     public void OnExitOptionMenu()
     {
-        Debug.Log("Closed options menu.");
+        // Debug.Log("Closed options menu.");
         optionsMenuAnimator.Play("OptionsMenu_Close");
     }
 
