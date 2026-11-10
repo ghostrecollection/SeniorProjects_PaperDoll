@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass_Still_Test
+  m_Name: Test_Grass_Still
   m_Shader: {fileID: -6465566751694194690, guid: 434aceb17da2a1a4a8db8f071685fe9f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
