@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CardboardTrim_Material
-    second: {fileID: 2100000, guid: 3e44b38676cd78d4f9d10daca843188f, type: 2}
+    second: {fileID: 2100000, guid: e3546fbd1185cd244b849eaabb9bec9f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
