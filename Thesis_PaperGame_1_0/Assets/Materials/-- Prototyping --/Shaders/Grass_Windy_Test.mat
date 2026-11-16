@@ -116,7 +116,7 @@ Material:
     m_Floats:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
-    - _AlphaClipThreshold: 0.815
+    - _AlphaClipThreshold: 0.009
     - _AlphaToMask: 0
     - _Alpha_Clip_Threshold: 0.156
     - _Blend: 0
