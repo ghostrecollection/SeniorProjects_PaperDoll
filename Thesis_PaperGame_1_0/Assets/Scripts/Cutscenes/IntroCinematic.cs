@@ -56,8 +56,6 @@ public class IntroCinematic : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         // What happens when the video is over:
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         SceneManager.LoadScene(2);
     }
 }

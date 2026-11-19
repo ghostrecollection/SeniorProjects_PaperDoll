@@ -22,13 +22,15 @@ public class GameStateController : MonoBehaviour
 
         instance = this;
         gstate = new GameState();
+
+        stateObjs = GetAllGameStateObjs();
     }
 
 
     // --- START ---
     void Start()
     {
-        stateObjs = GetAllGameStateObjs();
+        //stateObjs = GetAllGameStateObjs();
     }
 
 
@@ -60,7 +62,7 @@ public class GameStateController : MonoBehaviour
 
         }
 
-        foreach (IGameStateManager stateObj in stateObjs)
+        foreach (var stateObj in stateObjs)
         {
             stateObj.GetState(gstate);
         }
