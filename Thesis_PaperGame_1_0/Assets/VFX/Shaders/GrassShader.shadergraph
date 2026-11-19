@@ -1495,7 +1495,7 @@
     "m_ObjectId": "015eb3076522434f819c19fbac2f4fe2",
     "m_Title": "Object Alpha",
     "m_Position": {
-        "x": -983.000244140625,
+        "x": -983.0,
         "y": 1639.5
     }
 }
@@ -5737,7 +5737,7 @@
     "m_ObjectId": "77aca39bb3564bf6af9b3d597163a754",
     "m_Title": "Surface Color and Highlight",
     "m_Position": {
-        "x": -4415.00048828125,
+        "x": -4415.0,
         "y": 95.0
     }
 }
@@ -8529,7 +8529,7 @@
     "m_ObjectId": "c9b4f7ebcc58447c8b9fec9b7f1dfd66",
     "m_Title": "Movement Mask",
     "m_Position": {
-        "x": -1729.5003662109375,
+        "x": -1729.5,
         "y": -1509.5
     }
 }
@@ -10398,8 +10398,8 @@
     "m_ObjectId": "fbac1a5560fb49ba9b984e05d284b815",
     "m_Title": "Edge Color",
     "m_Position": {
-        "x": -3500.500244140625,
-        "y": 1740.9998779296875
+        "x": -3500.5,
+        "y": 1741.0
     }
 }
 
@@ -10409,8 +10409,8 @@
     "m_ObjectId": "fca21b1fbc9b4acab18d64f48e43aa8b",
     "m_Title": "Wind Displacement",
     "m_Position": {
-        "x": -2788.500244140625,
-        "y": -954.0000610351563
+        "x": -2788.5,
+        "y": -954.0
     }
 }
 
