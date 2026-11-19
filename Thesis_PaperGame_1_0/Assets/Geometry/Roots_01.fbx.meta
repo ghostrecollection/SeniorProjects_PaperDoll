@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 6110af2c57be7d94f9cb6688afa6fc46
+guid: d61ae343d20b44c41afc901415e857a8
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Roots_Material
-    second: {fileID: 2100000, guid: 3b40988e94cb7d248a68b6841e4f2bd3, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -102,7 +97,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 90
+    globalScale: 0.9
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

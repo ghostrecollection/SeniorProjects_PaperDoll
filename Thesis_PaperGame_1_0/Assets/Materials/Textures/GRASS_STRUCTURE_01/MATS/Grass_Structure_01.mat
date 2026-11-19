@@ -11,13 +11,15 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 434aceb17da2a1a4a8db8f071685fe9f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ALPHATEST_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -25,7 +27,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Alpha_Texture:
-        m_Texture: {fileID: 2800000, guid: 8b7ee08c75b4e7a4f879f57947189123, type: 3}
+        m_Texture: {fileID: 2800000, guid: 30185afff6abd9948b235be0d12cfbbb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColor:
@@ -50,6 +52,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EdgeMask:
+        m_Texture: {fileID: 2800000, guid: 023fe07a6b58358448a9e44142581228, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -103,12 +109,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _AlphaClip: 0
-    - _AlphaClipThreshold: 0.537
-    - _AlphaToMask: 0
+    - _AlphaClip: 1
+    - _AlphaClipThreshold: 0.116
+    - _AlphaToMask: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -117,6 +124,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _EdgeIntensity: 0.5
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -145,18 +153,21 @@ Material:
     - _Surface_PosterizeSteps: 25
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EdgeColor: {r: 0.77254903, g: 0.6293035, b: 0.40249804, a: 1}
     - _Edge_Color: {r: 0.5424528, g: 0.43729278, b: 0.2635502, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Movement_Direction: {r: 0, g: -0.2, b: 0, a: 0}
     - _Movement_MaskOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Movement_MaskSpread: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Surface_BaseColor: {r: 0.9764151, g: 0.8137372, b: 0.6448024, a: 1}
-    - _Surface_HighlightColor: {r: 1.4980392, g: 0.93854094, b: 0.5019608, a: 1}
+    - _Surface_BaseColor: {r: 0.8726415, g: 0.82096297, b: 0.6050863, a: 1}
+    - _Surface_HighlightColor: {r: 2.1185474, g: 1.3272973, b: 0.70987976, a: 1}
     - _Surface_HighlightScale: {r: 5, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

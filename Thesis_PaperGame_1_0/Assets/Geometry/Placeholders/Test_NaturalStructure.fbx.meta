@@ -3,27 +3,7 @@ guid: ece83ef3f0e4d4148a6316b1456ec20d
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CardboardTrim_Material
-    second: {fileID: 2100000, guid: e3546fbd1185cd244b849eaabb9bec9f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: FlowingGrass_Material
-    second: {fileID: 2100000, guid: 221d073b00c633d4b89994af0af7ee94, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Grass_Material
-    second: {fileID: 2100000, guid: 60b7e35239ddfde49abbd0bc61056eee, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TileCardboard_Material
-    second: {fileID: 2100000, guid: 85cf57e1a80dd924f9eb9ce6e1690694, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -54,7 +34,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 90
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -117,7 +97,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 100
+    globalScale: 0.9
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
